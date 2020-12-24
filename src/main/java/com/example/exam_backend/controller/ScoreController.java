@@ -26,9 +26,28 @@ public class ScoreController {
     @Autowired
     private ScoreService scoreService;
 
+    /**
+     * 根据学生ID查找成绩 不分页
+     *
+     * @param studentId 学生ID
+     * @return Score list
+     */
     @GetMapping("/score/{studentId}")
     public List<Score> findById(@PathVariable Integer studentId) {
         return scoreService.findById(studentId);
+    }
+
+    /**
+     * 根据学生ID查找成绩 分页
+     *
+     * @param page      当前页
+     * @param size      每页个数
+     * @param studentId 学生ID
+     * @return Score list
+     */
+    @GetMapping("/score/{page}/{size}/{studentId}")
+    public List<Score> findById(@PathVariable Integer page, @PathVariable Integer size, @PathVariable Integer studentId) {
+        return scoreService.findById(page, size, studentId);
     }
 }
 

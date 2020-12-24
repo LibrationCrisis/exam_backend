@@ -42,7 +42,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         // 条件构造器
         QueryWrapper<Student> studentQueryWrapper = new QueryWrapper<>();
         // -> id = 1 and name = '老王'
-        studentQueryWrapper.allEq(queryCriteria);
+        studentQueryWrapper.allEq(queryCriteria).select("student_id", "student_name", "role");
         return getMap(studentQueryWrapper);
     }
 

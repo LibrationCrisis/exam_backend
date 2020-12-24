@@ -1,6 +1,7 @@
 package com.example.exam_backend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.exam_backend.entity.Score;
 import com.example.exam_backend.entity.Student;
 import com.example.exam_backend.mapper.ScoreMapper;
@@ -20,12 +21,11 @@ import java.util.List;
  */
 @Service
 public class ScoreServiceImpl extends ServiceImpl<ScoreMapper, Score> implements ScoreService {
-
     /**
-     * 根据学生ID查找成绩
+     * 根据学生ID查找成绩 不分页
      *
      * @param studentId 学生ID
-     * @return 成绩列表
+     * @return Score list
      */
     @Override
     public List<Score> findById(Integer studentId) {
@@ -33,5 +33,22 @@ public class ScoreServiceImpl extends ServiceImpl<ScoreMapper, Score> implements
         QueryWrapper<Score> scoreQueryWrapper = new QueryWrapper<>();
         scoreQueryWrapper.eq("student_id", studentId);
         return list(scoreQueryWrapper);
+    }
+
+    /**
+     * 根据学生ID查找成绩 分页
+     *
+     * @param page      当前页
+     * @param size      每页个数
+     * @param studentId 学生ID
+     * @return Score list
+     */
+    @Override
+    public List<Score> findById(Integer page, Integer size, Integer studentId) {
+        // 条件构造器
+        QueryWrapper<Score> scoreQueryWrapper = new QueryWrapper<>();
+        scoreQueryWrapper.eq("student_id", studentId);
+        Page<Score> scorePage = getBaseMapper().selectPage(new Page<>(page, size), scoreQueryWrapper);
+        return scorePage.getRecords();
     }
 }

@@ -14,12 +14,23 @@ import java.util.List;
  * @since 2020-12-22
  */
 public interface ScoreService extends IService<Score> {
+
     /**
-     * 根据学生ID查找成绩
+     * 根据学生ID查找成绩 不分页
      *
      * @param studentId 学生ID
-     * @return 成绩列表
+     * @return Score list
      */
     List<Score> findById(Integer studentId);
+
+    /**
+     * 根据学生ID查找成绩 分页
+     *
+     * @param page      当前页
+     * @param size      每页个数
+     * @param studentId 学生ID
+     * @return Score list
+     */
+    List<Score> findById(Integer page, Integer size, Integer studentId);
 
 }

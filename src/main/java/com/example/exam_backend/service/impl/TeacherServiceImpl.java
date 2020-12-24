@@ -36,7 +36,7 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         // 条件构造器
         QueryWrapper<Teacher> queryTeacherWrapper = new QueryWrapper<>();
         // -> id = 1 and name = '老王'
-        queryTeacherWrapper.allEq(queryCriteria);
+        queryTeacherWrapper.allEq(queryCriteria).select("teacher_id", "teacher_name", "role");
         return getMap(queryTeacherWrapper);
     }
 }
