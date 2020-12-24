@@ -18,9 +18,11 @@ public class LoginController {
     public Map<String, Object> login(Login login) {
         Integer username = login.getUsername();
         String password = login.getPassword();
+        // 判断条件
         Map<String, Object> queryCriteria = new HashMap<>();
         queryCriteria.put("id", username);
         queryCriteria.put("password", password);
+        // 结果集
         Map<String, Object> result = loginService.login(queryCriteria);
         System.out.println(result);
         return result;

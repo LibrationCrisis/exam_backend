@@ -12,6 +12,7 @@ import com.example.exam_backend.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -32,12 +33,16 @@ public class LoginServiceImpl extends ServiceImpl<LoginMapper, Login> implements
         QueryWrapper<Student> queryStudentWrapper = new QueryWrapper<>();
         // -> id = 1 and name = '老王'
         queryStudentWrapper.allEq(queryCriteria);
-        Map<String, Object> serviceMap = null;
+        Map<String, Object> serviceMap;
         serviceMap = studentService.getMap(queryStudentWrapper);
         if (serviceMap == null) {
             QueryWrapper<Teacher> queryTeacherWrapper = new QueryWrapper<>();
             queryTeacherWrapper.allEq(queryCriteria);
             serviceMap = teacherService.getMap(queryTeacherWrapper);
+            if (serviceMap == null) {
+                serviceMap = new HashMap<>();
+                serviceMap.put("error", "没有数据");
+            }
         }
         return serviceMap;
     }
