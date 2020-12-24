@@ -30,28 +30,15 @@ public class ExamManageController {
     private ExamManageService examManageService;
 
     /**
-     * 不分页查询所有试卷
-     * @return ExamManage集合
-     */
-    @GetMapping("/exams")
-    public List<ExamManage> findAll() {
-        return examManageService.list();
-    }
-
-    /**
      * 分页查询所有试卷
+     *
      * @param page 当前页
      * @param size 每页个数
      * @return ExamManage集合
      */
     @GetMapping(value = "/exams/{page}/{size}")
-    public List<ExamManage> findAll(@PathVariable("page") Integer page, @PathVariable("size") Integer size) {
+    public List<ExamManage> findAll(@PathVariable Integer page, @PathVariable Integer size) {
         return examManageService.pageSearch(page, size);
     }
-
-    public ExamManage findById(@PathVariable("examCode") Integer examCode){
-        return null;
-    }
-
 }
 

@@ -2,7 +2,9 @@ package com.example.exam_backend.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -23,8 +25,8 @@ public class Teacher implements Serializable {
     /**
      * ID
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId(value = "teacher_id", type = IdType.AUTO)
+    private Integer teacherId;
 
     /**
      * 姓名

@@ -22,10 +22,6 @@ import java.util.List;
 @Service
 public class ExamManageServiceImpl extends ServiceImpl<ExamManageMapper, ExamManage> implements ExamManageService {
 
-    @Autowired
-    private ExamManageMapper examManageMapper;
-
-
     /**
      * 分页查找
      *
@@ -35,7 +31,7 @@ public class ExamManageServiceImpl extends ServiceImpl<ExamManageMapper, ExamMan
      */
     @Override
     public List<ExamManage> pageSearch(Integer page, Integer size) {
-        IPage<ExamManage> examManageIPage = examManageMapper.selectPage(new Page<>(page, size), null);
+        IPage<ExamManage> examManageIPage = getBaseMapper().selectPage(new Page<>(page, size), null);
         return examManageIPage.getRecords();
     }
 }

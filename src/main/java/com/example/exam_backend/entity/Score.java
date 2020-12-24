@@ -35,8 +35,8 @@ public class Score implements Serializable {
     /**
      * 学号
      */
-    @TableField("studentId")
-    private Integer studentid;
+    @TableField("student_id")
+    private Integer studentId;
 
     /**
      * 课程名称

@@ -23,8 +23,8 @@ public class Student implements Serializable {
     /**
      * ID
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId(value = "student_id", type = IdType.AUTO)
+    private Integer studentId;
 
     /**
      * 姓名
