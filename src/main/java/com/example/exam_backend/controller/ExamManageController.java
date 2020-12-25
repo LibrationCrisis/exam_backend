@@ -40,5 +40,16 @@ public class ExamManageController {
     public List<ExamManage> findAll(@PathVariable Integer page, @PathVariable Integer size) {
         return examManageService.pageSearch(page, size);
     }
+
+    /**
+     * 根据ID查找
+     *
+     * @param examCode 试卷ID
+     * @return 试卷对象
+     */
+    @GetMapping("/exam/{examCode}")
+    public ExamManage findById(@PathVariable Integer examCode) {
+        return examManageService.getById(examCode);
+    }
 }
 
