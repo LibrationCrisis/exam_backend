@@ -2,13 +2,10 @@ package com.example.exam_backend.controller;
 
 
 import com.example.exam_backend.entity.Score;
-import com.example.exam_backend.entity.Student;
 import com.example.exam_backend.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -48,6 +45,17 @@ public class ScoreController {
     @GetMapping("/score/{page}/{size}/{studentId}")
     public List<Score> findById(@PathVariable Integer page, @PathVariable Integer size, @PathVariable Integer studentId) {
         return scoreService.findById(page, size, studentId);
+    }
+
+    /**
+     * 根据考试编号查找成绩
+     *
+     * @param examCode 考试编号
+     * @return 考试分数列表
+     */
+    @GetMapping("/scores/{examCode}")
+    public List<Score> findByExamCode(@PathVariable Integer examCode) {
+        return scoreService.findByExamCode(examCode);
     }
 }
 

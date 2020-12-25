@@ -2,11 +2,10 @@ package com.example.exam_backend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.exam_backend.entity.Score;
-import com.example.exam_backend.entity.Student;
 import com.example.exam_backend.mapper.ScoreMapper;
 import com.example.exam_backend.service.ScoreService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,5 +49,20 @@ public class ScoreServiceImpl extends ServiceImpl<ScoreMapper, Score> implements
         scoreQueryWrapper.eq("student_id", studentId);
         Page<Score> scorePage = getBaseMapper().selectPage(new Page<>(page, size), scoreQueryWrapper);
         return scorePage.getRecords();
+    }
+
+    /**
+     * 根据考试编号查找成绩
+     *
+     * @param examCode 考试编号
+     * @return 考试分散列表
+     */
+    @Override
+    public List<Score> findByExamCode(Integer examCode) {
+        // 条件构造器
+        QueryWrapper<Score> scoreQueryWrapper = new QueryWrapper<>();
+        // 获取学生参加该考试分数最大值
+        scoreQueryWrapper.eq("exam_code", examCode).groupBy("student_id").select("MAX(score) AS score", "score_id", "exam_code", "student_id", "subject", "answer_date");
+        return list(scoreQueryWrapper);
     }
 }

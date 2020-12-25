@@ -33,4 +33,12 @@ public interface ScoreService extends IService<Score> {
      */
     List<Score> findById(Integer page, Integer size, Integer studentId);
 
+    /**
+     * 根据考试编号查找成绩
+     *
+     * @param examCode 考试编号
+     * @return 考试分数列表
+     */
+    List<Score> findByExamCode(Integer examCode);
+
 }
