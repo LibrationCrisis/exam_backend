@@ -2,6 +2,9 @@ package com.example.exam_backend.service;
 
 import com.example.exam_backend.entity.FillQuestion;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.exam_backend.entity.MultiQuestion;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +15,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-12-22
  */
 public interface FillQuestionService extends IService<FillQuestion> {
+
+    /**
+     * 根据试卷编号查填空题
+     *
+     * @param paperId 试卷编号
+     * @return 填空题列表
+     */
+    List<FillQuestion> findByIdAndType(Integer paperId);
 
 }
