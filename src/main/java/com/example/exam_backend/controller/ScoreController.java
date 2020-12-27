@@ -4,11 +4,10 @@ package com.example.exam_backend.controller;
 import com.example.exam_backend.entity.Score;
 import com.example.exam_backend.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -56,6 +55,17 @@ public class ScoreController {
     @GetMapping("/scores/{examCode}")
     public List<Score> findByExamCode(@PathVariable Integer examCode) {
         return scoreService.findByExamCode(examCode);
+    }
+
+    /**
+     * 保存考试分数
+     *
+     * @param score 考试分数
+     * @return 是否插入成功
+     */
+    @PostMapping("/score")
+    public Boolean add(@RequestBody Score score) {
+        return scoreService.save(score);
     }
 }
 

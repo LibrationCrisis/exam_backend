@@ -1,7 +1,10 @@
 package com.example.exam_backend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.exam_backend.entity.ExamManage;
 import com.example.exam_backend.entity.JudgeQuestion;
 import com.example.exam_backend.mapper.JudgeQuestionMapper;
 import com.example.exam_backend.service.JudgeQuestionService;
@@ -34,5 +37,18 @@ public class JudgeQuestionServiceImpl extends ServiceImpl<JudgeQuestionMapper, J
         QueryWrapper<JudgeQuestion> judgeQuestionQueryWrapper = new QueryWrapper<>();
         judgeQuestionQueryWrapper.inSql("question_id", sql);
         return list(judgeQuestionQueryWrapper);
+    }
+
+    /**
+     * 分页查找题库
+     *
+     * @param page 当前页
+     * @param size 每页个数
+     * @return 判断题列表
+     */
+    @Override
+    public List<JudgeQuestion> findAll(Integer page, Integer size) {
+        IPage<JudgeQuestion> judgeQuestionPage = getBaseMapper().selectPage(new Page<>(page, size), null);
+        return judgeQuestionPage.getRecords();
     }
 }

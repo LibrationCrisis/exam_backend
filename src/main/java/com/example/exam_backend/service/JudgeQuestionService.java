@@ -23,4 +23,12 @@ public interface JudgeQuestionService extends IService<JudgeQuestion> {
      */
     List<JudgeQuestion> findByIdAndType(Integer paperId);
 
+    /**
+     * 分页查找题库
+     *
+     * @param page 当前页
+     * @param size 每页个数
+     * @return 判断题列表
+     */
+    List<JudgeQuestion> findAll(Integer page, Integer size);
 }

@@ -1,6 +1,9 @@
 package com.example.exam_backend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.exam_backend.entity.JudgeQuestion;
 import com.example.exam_backend.entity.MultiQuestion;
 import com.example.exam_backend.mapper.MultiQuestionMapper;
 import com.example.exam_backend.service.MultiQuestionService;
@@ -35,5 +38,18 @@ public class MultiQuestionServiceImpl extends ServiceImpl<MultiQuestionMapper, M
         QueryWrapper<MultiQuestion> multiQuestionQueryWrapper = new QueryWrapper<>();
         multiQuestionQueryWrapper.inSql("question_id", sql);
         return list(multiQuestionQueryWrapper);
+    }
+
+    /**
+     * 分页查找题库
+     *
+     * @param page 当前页
+     * @param size 每页个数
+     * @return 选择题列表
+     */
+    @Override
+    public List<MultiQuestion> findAll(Integer page, Integer size) {
+        IPage<MultiQuestion> multiQuestionPage = getBaseMapper().selectPage(new Page<>(page, size), null);
+        return multiQuestionPage.getRecords();
     }
 }

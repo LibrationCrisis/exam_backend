@@ -1,9 +1,16 @@
 package com.example.exam_backend.controller;
 
 
+import com.example.exam_backend.entity.JudgeQuestion;
+import com.example.exam_backend.service.JudgeQuestionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,8 +21,21 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-12-22
  */
 @RestController
-@RequestMapping("/exam_backend/judge-question")
 public class JudgeQuestionController {
+    @Autowired
+    private JudgeQuestionService judgeQuestionService;
+
+    /**
+     * 分页查找题库
+     *
+     * @param page 当前页
+     * @param size 每页个数
+     * @return 判断题列表
+     */
+    @GetMapping("/judge-question/{page}/{size}")
+    public List<JudgeQuestion> findAll(@PathVariable Integer page, @PathVariable Integer size) {
+        return judgeQuestionService.findAll(page, size);
+    }
 
 }
 
