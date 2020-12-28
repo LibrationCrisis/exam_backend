@@ -18,6 +18,13 @@ import java.util.List;
 public interface FillQuestionService extends IService<FillQuestion> {
 
     /**
+     * 查询填空题id
+     *
+     * @return 填空题id
+     */
+    Integer findOnlyQuestion();
+
+    /**
      * 根据试卷编号查填空题
      *
      * @param paperId 试卷编号

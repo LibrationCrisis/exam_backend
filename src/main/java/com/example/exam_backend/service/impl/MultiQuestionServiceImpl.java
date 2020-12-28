@@ -25,6 +25,18 @@ import java.util.Map;
 public class MultiQuestionServiceImpl extends ServiceImpl<MultiQuestionMapper, MultiQuestion> implements MultiQuestionService {
 
     /**
+     * 查询选择题id
+     *
+     * @return 选择题id
+     */
+    @Override
+    public Integer findOnlyQuestion() {
+        QueryWrapper<MultiQuestion> multiQuestionQueryWrapper = new QueryWrapper<>();
+        multiQuestionQueryWrapper.orderByDesc("question_id").last("limit 1");
+        return getOne(multiQuestionQueryWrapper).getQuestionId();
+    }
+
+    /**
      * 根据试卷编号查选择题
      *
      * @param paperId 试卷编号

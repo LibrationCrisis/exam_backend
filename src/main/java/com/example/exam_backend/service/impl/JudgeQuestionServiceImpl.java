@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.exam_backend.entity.ExamManage;
 import com.example.exam_backend.entity.JudgeQuestion;
 import com.example.exam_backend.mapper.JudgeQuestionMapper;
 import com.example.exam_backend.service.JudgeQuestionService;
@@ -22,6 +21,18 @@ import java.util.List;
  */
 @Service
 public class JudgeQuestionServiceImpl extends ServiceImpl<JudgeQuestionMapper, JudgeQuestion> implements JudgeQuestionService {
+
+    /**
+     * 查询判断题id
+     *
+     * @return 判断题id
+     */
+    @Override
+    public Integer findOnlyQuestion() {
+        QueryWrapper<JudgeQuestion> judgeQuestionQueryWrapper = new QueryWrapper<>();
+        judgeQuestionQueryWrapper.orderByDesc("question_id").last("limit 1");
+        return getOne(judgeQuestionQueryWrapper).getQuestionId();
+    }
 
     /**
      * 根据试卷编号查判断题

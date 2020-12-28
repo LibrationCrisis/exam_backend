@@ -24,4 +24,10 @@ public interface ExamManageService extends IService<ExamManage> {
      */
     List<ExamManage> pageSearch(Integer page, Integer size);
 
+    /**
+     * 查询最后一条记录的paperId,返回给前端达到自增效果
+     *
+     * @return paperId
+     */
+    Integer findOnlyPaperId();
 }

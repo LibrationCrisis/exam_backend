@@ -17,6 +17,13 @@ import java.util.List;
 public interface MultiQuestionService extends IService<MultiQuestion> {
 
     /**
+     * 查询选择题id
+     *
+     * @return 选择题id
+     */
+    Integer findOnlyQuestion();
+
+    /**
      * 根据试卷编号查选择题
      *
      * @param paperId 试卷编号

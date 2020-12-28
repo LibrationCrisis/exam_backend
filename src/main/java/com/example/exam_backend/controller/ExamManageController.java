@@ -6,11 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.exam_backend.entity.ExamManage;
 import com.example.exam_backend.service.ExamManageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -50,6 +46,50 @@ public class ExamManageController {
     @GetMapping("/exam/{examCode}")
     public ExamManage findById(@PathVariable Integer examCode) {
         return examManageService.getById(examCode);
+    }
+
+    /**
+     * 删除操作
+     *
+     * @param examCode 考试编号
+     * @return true false
+     */
+    @DeleteMapping("/exam/{examCode}")
+    public Boolean deleteById(@PathVariable Integer examCode) {
+        return examManageService.removeById(examCode);
+    }
+
+    /**
+     * 更新操作
+     *
+     * @param examManage 对象
+     * @return true false
+     */
+    @PutMapping("/exam")
+    public Boolean update(@RequestBody ExamManage examManage) {
+        System.out.println(examManage.getExamDate());
+        return examManageService.updateById(examManage);
+    }
+
+    /**
+     * 插入操作
+     *
+     * @param examManage 对象
+     * @return true false
+     */
+    @PostMapping("/exam")
+    public Boolean add(@RequestBody ExamManage examManage) {
+        return examManageService.save(examManage);
+    }
+
+    /**
+     * 查询最后一条记录的paperId,返回给前端达到自增效果
+     *
+     * @return paperId
+     */
+    @GetMapping("/examManagePaperId")
+    public Integer findOnlyPaperId() {
+        return examManageService.findOnlyPaperId();
     }
 }
 

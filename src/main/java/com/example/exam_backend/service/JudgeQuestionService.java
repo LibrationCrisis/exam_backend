@@ -1,8 +1,7 @@
 package com.example.exam_backend.service;
 
-import com.example.exam_backend.entity.JudgeQuestion;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.exam_backend.entity.MultiQuestion;
+import com.example.exam_backend.entity.JudgeQuestion;
 
 import java.util.List;
 
@@ -15,6 +14,14 @@ import java.util.List;
  * @since 2020-12-22
  */
 public interface JudgeQuestionService extends IService<JudgeQuestion> {
+
+    /**
+     * 查询判断题id
+     *
+     * @return 判断题id
+     */
+    Integer findOnlyQuestion();
+
     /**
      * 根据试卷编号查判断题
      *

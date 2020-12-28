@@ -24,6 +24,18 @@ import java.util.List;
 public class FillQuestionServiceImpl extends ServiceImpl<FillQuestionMapper, FillQuestion> implements FillQuestionService {
 
     /**
+     * 查询填空题id
+     *
+     * @return 填空题id
+     */
+    @Override
+    public Integer findOnlyQuestion() {
+        QueryWrapper<FillQuestion> fillQuestionQueryWrapper = new QueryWrapper<>();
+        fillQuestionQueryWrapper.orderByDesc("question_id").last("limit 1");
+        return getOne(fillQuestionQueryWrapper).getQuestionId();
+    }
+
+    /**
      * 根据试卷编号查填空题
      *
      * @param paperId 试卷编号

@@ -1,5 +1,6 @@
 package com.example.exam_backend.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -33,5 +34,17 @@ public class ExamManageServiceImpl extends ServiceImpl<ExamManageMapper, ExamMan
     public List<ExamManage> pageSearch(Integer page, Integer size) {
         IPage<ExamManage> examManageIPage = getBaseMapper().selectPage(new Page<>(page, size), null);
         return examManageIPage.getRecords();
+    }
+
+    /**
+     * 查询最后一条记录的paperId,返回给前端达到自增效果
+     *
+     * @return paperId
+     */
+    @Override
+    public Integer findOnlyPaperId() {
+        QueryWrapper<ExamManage> examManageQueryWrapper = new QueryWrapper<>();
+        examManageQueryWrapper.orderByDesc("paper_id").last("limit 1");
+        return getOne(examManageQueryWrapper).getPaperId();
     }
 }

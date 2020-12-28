@@ -6,11 +6,7 @@ import com.example.exam_backend.entity.MultiQuestion;
 import com.example.exam_backend.service.JudgeQuestionService;
 import com.example.exam_backend.service.MultiQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +22,28 @@ import java.util.List;
 public class MultiQuestionController {
     @Autowired
     private MultiQuestionService multiQuestionService;
+
+
+    /**
+     * 查询选择题id
+     *
+     * @return 选择题id
+     */
+    @GetMapping("/multi-question-id")
+    public Integer findOnlyQuestion() {
+        return multiQuestionService.findOnlyQuestion();
+    }
+
+    /**
+     * 添加选择题
+     *
+     * @param multiQuestion 选择题
+     * @return true false
+     */
+    @PostMapping("/multi-question")
+    public Boolean add(@RequestBody MultiQuestion multiQuestion) {
+        return multiQuestionService.save(multiQuestion);
+    }
 
     /**
      * 分页查找题库

@@ -4,13 +4,13 @@ package com.example.exam_backend.controller;
 import com.example.exam_backend.entity.FillQuestion;
 import com.example.exam_backend.entity.JudgeQuestion;
 import com.example.exam_backend.entity.MultiQuestion;
+import com.example.exam_backend.entity.PaperManage;
 import com.example.exam_backend.service.FillQuestionService;
 import com.example.exam_backend.service.JudgeQuestionService;
 import com.example.exam_backend.service.MultiQuestionService;
+import com.example.exam_backend.service.PaperManageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +27,8 @@ import java.util.Map;
 @RestController
 public class PaperManageController {
 
+    @Autowired
+    private PaperManageService paperManageService;
 
     @Autowired
     private MultiQuestionService multiQuestionService;
@@ -36,6 +38,17 @@ public class PaperManageController {
 
     @Autowired
     private JudgeQuestionService judgeQuestionService;
+
+    /**
+     * 通过中间表关联题库和考试
+     *
+     * @param paperManage 对象
+     * @return true false
+     */
+    @PostMapping("/paper-manage")
+    public Boolean add(@RequestBody PaperManage paperManage) {
+        return paperManageService.save(paperManage);
+    }
 
     /**
      * 根据试卷编号查题库

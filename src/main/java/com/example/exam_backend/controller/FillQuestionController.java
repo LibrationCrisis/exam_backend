@@ -6,11 +6,7 @@ import com.example.exam_backend.entity.MultiQuestion;
 import com.example.exam_backend.service.FillQuestionService;
 import com.example.exam_backend.service.MultiQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +21,28 @@ import java.util.List;
 @RestController
 public class FillQuestionController {
     @Autowired
-    private FillQuestionService FillQuestionService;
+    private FillQuestionService fillQuestionService;
+
+    /**
+     * 查询填空题id
+     *
+     * @return 填空题id
+     */
+    @GetMapping("/fill-question-id")
+    public Integer findOnlyQuestion() {
+        return fillQuestionService.findOnlyQuestion();
+    }
+
+    /**
+     * 添加填空题
+     *
+     * @param fillQuestion 填空题
+     * @return true false
+     */
+    @PostMapping("/fill-question")
+    public Boolean add(@RequestBody FillQuestion fillQuestion) {
+        return fillQuestionService.save(fillQuestion);
+    }
 
     /**
      * 分页查找题库
@@ -36,7 +53,7 @@ public class FillQuestionController {
      */
     @GetMapping("/fill-question/{page}/{size}")
     public List<FillQuestion> findAll(@PathVariable Integer page, @PathVariable Integer size) {
-        return FillQuestionService.findAll(page, size);
+        return fillQuestionService.findAll(page, size);
     }
 }
 
