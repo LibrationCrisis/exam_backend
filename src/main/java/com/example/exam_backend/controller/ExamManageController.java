@@ -1,16 +1,11 @@
 package com.example.exam_backend.controller;
 
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.exam_backend.entity.ExamManage;
 import com.example.exam_backend.service.ExamManageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -22,8 +17,12 @@ import java.util.Map;
  */
 @RestController
 public class ExamManageController {
-    @Autowired
-    private ExamManageService examManageService;
+
+    private final ExamManageService examManageService;
+
+    public ExamManageController(ExamManageService examManageService) {
+        this.examManageService = examManageService;
+    }
 
     /**
      * 分页查询所有试卷

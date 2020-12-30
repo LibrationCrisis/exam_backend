@@ -2,7 +2,6 @@ package com.example.exam_backend.controller;
 
 import com.example.exam_backend.service.StudentService;
 import com.example.exam_backend.service.TeacherService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -10,12 +9,15 @@ import java.util.Map;
 
 @RestController
 public class LoginController {
-    @Autowired
-    StudentService studentService;
 
-    @Autowired
-    TeacherService teacherService;
+    private final StudentService studentService;
 
+    private final TeacherService teacherService;
+
+    public LoginController(StudentService studentService, TeacherService teacherService) {
+        this.studentService = studentService;
+        this.teacherService = teacherService;
+    }
 
     @PostMapping("/login")
     public Map<String, Object> login(Integer username, String password) {

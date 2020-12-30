@@ -2,10 +2,7 @@ package com.example.exam_backend.controller;
 
 
 import com.example.exam_backend.entity.FillQuestion;
-import com.example.exam_backend.entity.MultiQuestion;
 import com.example.exam_backend.service.FillQuestionService;
-import com.example.exam_backend.service.MultiQuestionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +17,12 @@ import java.util.List;
  */
 @RestController
 public class FillQuestionController {
-    @Autowired
-    private FillQuestionService fillQuestionService;
+
+    private final FillQuestionService fillQuestionService;
+
+    public FillQuestionController(FillQuestionService fillQuestionService) {
+        this.fillQuestionService = fillQuestionService;
+    }
 
     /**
      * 查询填空题id

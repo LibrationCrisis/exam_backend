@@ -1,7 +1,7 @@
 package com.example.exam_backend.service;
 
-import com.example.exam_backend.entity.Teacher;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.exam_backend.entity.Teacher;
 
 import java.util.Map;
 

@@ -3,11 +3,9 @@ package com.example.exam_backend.controller;
 
 import com.example.exam_backend.entity.Score;
 import com.example.exam_backend.service.ScoreService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -19,8 +17,12 @@ import java.util.Map;
  */
 @RestController
 public class ScoreController {
-    @Autowired
-    private ScoreService scoreService;
+
+    private final ScoreService scoreService;
+
+    public ScoreController(ScoreService scoreService) {
+        this.scoreService = scoreService;
+    }
 
     /**
      * 根据学生ID查找成绩 不分页

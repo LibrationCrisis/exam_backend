@@ -1,6 +1,8 @@
 package com.example.exam_backend.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,6 +18,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class PaperManage implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

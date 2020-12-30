@@ -1,10 +1,8 @@
 package com.example.exam_backend.controller;
 
 
-import com.example.exam_backend.entity.FillQuestion;
 import com.example.exam_backend.entity.JudgeQuestion;
 import com.example.exam_backend.service.JudgeQuestionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +17,12 @@ import java.util.List;
  */
 @RestController
 public class JudgeQuestionController {
-    @Autowired
-    private JudgeQuestionService judgeQuestionService;
+
+    private final JudgeQuestionService judgeQuestionService;
+
+    public JudgeQuestionController(JudgeQuestionService judgeQuestionService) {
+        this.judgeQuestionService = judgeQuestionService;
+    }
 
 
     /**

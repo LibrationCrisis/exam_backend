@@ -1,7 +1,7 @@
 package com.example.exam_backend.service;
 
-import com.example.exam_backend.entity.Score;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.exam_backend.entity.Score;
 
 import java.util.List;
 

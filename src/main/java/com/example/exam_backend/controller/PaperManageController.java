@@ -9,7 +9,6 @@ import com.example.exam_backend.service.FillQuestionService;
 import com.example.exam_backend.service.JudgeQuestionService;
 import com.example.exam_backend.service.MultiQuestionService;
 import com.example.exam_backend.service.PaperManageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -27,17 +26,20 @@ import java.util.Map;
 @RestController
 public class PaperManageController {
 
-    @Autowired
-    private PaperManageService paperManageService;
+    private final PaperManageService paperManageService;
 
-    @Autowired
-    private MultiQuestionService multiQuestionService;
+    private final MultiQuestionService multiQuestionService;
 
-    @Autowired
-    private FillQuestionService fillQuestionService;
+    private final FillQuestionService fillQuestionService;
 
-    @Autowired
-    private JudgeQuestionService judgeQuestionService;
+    private final JudgeQuestionService judgeQuestionService;
+
+    public PaperManageController(PaperManageService paperManageService, MultiQuestionService multiQuestionService, FillQuestionService fillQuestionService, JudgeQuestionService judgeQuestionService) {
+        this.paperManageService = paperManageService;
+        this.multiQuestionService = multiQuestionService;
+        this.fillQuestionService = fillQuestionService;
+        this.judgeQuestionService = judgeQuestionService;
+    }
 
     /**
      * 通过中间表关联题库和考试
